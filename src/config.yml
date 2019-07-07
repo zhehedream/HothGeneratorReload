@@ -1,0 +1,349 @@
+#
+# All world configuration has been moved into worldConfig.yml 
+# You do not need to edit the worldConfig.yml file manually.
+#
+# Instead you can configure it using these commands:
+#
+# Add a new world to the configuration:
+#
+# /hothaddworld worldname [hoth|tatooine|dagobah]
+#
+# Delete a world from the configuration
+#
+# /hothdelworld worldname
+#
+# Change the world type of a hoth world
+#
+# /hothsetworldtype worldname [hoth|tatooine|dagobah]
+#
+# Set a flag for a hoth world
+#
+# /hothsetworldflag world flag value
+#
+# Prints information about a hoth world. Exclude worldname for a list of worlds
+#
+# /hothworldinfo worldname
+#
+# --- Advanced options ---
+#
+# There's no need to change anything of the following unless there's
+# some game mechanics you really want to change. If you want to play
+# the worlds as the author intended, just leave the following as is.
+#
+# If you should mess up the config then just stop the server, remove the
+# config file and then start the server again.
+#
+# Almost all options can be overridden per world by using the /hothsetworldflag
+# command. This is useful if you want specific rules for each world. Like one hoth
+# world with spikes, and one without.
+#
+# Do note that not all options are valid for all world types.
+# Some examples:
+#   Ice spikes can only be generated in hoth type worlds
+#   Freeze damage is only available in hoth type worlds
+#   Oasises are only available in tatooine type worlds
+#   Tree huts are only available in dagobah worlds
+#   .. etc ..
+#
+# Worldguard regions can also override a lot of these options by using the
+# hothregion command. 
+#
+hoth:
+#
+# debug - true/false. Will print some debug info into the console if set to true.
+  debug: false
+#
+# iteminfotool - true/false. If true then right clicking a block with a clay ball will print some data about that block.
+  iteminfotool: false
+#
+# smoothsnow - true/false. Set to false to turn off the smooth snow cover.
+  smoothsnow: true
+#
+# smoothlava - true/false. Set to false to turn off the smooth lava cover.
+  smoothlava: true
+#
+# worldeditselection - true/false. Set to true to use world edit cuboid region selections when using hothexport. 
+  worldeditselection: false
+#
+# selectiontoolid - Tool to use for making region selections. Does not affect world edit selection. 
+  selectiontoolid: 271
+#
+# world.surfaceoffset - 0 or a positive value. Offsets the surface upward from the default of 64 by adding more stone layers.
+  world.surfaceoffset: 0
+#
+# structure.spikes.rarity - 0-10. Rarity for spikes. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.spikes.rarity: 2
+#
+# structure.gardens.rarity - 0-10. Rarity for gardens. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.gardens.rarity: 2
+#
+# structure.domes.rarity - 0-10. Rarity for domes. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.domes.rarity: 3
+#
+# structure.domes.plantstem - Block ID for alien plant stems
+  structure.domes.plantstem: 19
+#
+# structure.domes.planttop  - Block ID for alien plant top
+  structure.domes.planttop: 89
+#
+# structure.domes.floor - Block ID for dome floor material
+  structure.domes.floor: 3
+#
+# structure.domes.placeminidome - true/false. Whether the central building should be generated.
+  structure.domes.placeminidome: true
+#
+# structure.domes.floorrandom - Block ID for the random floor material
+  structure.domes.floorrandom: 89
+#
+# structure.bases.rarity - 0-10. Rarity for bases. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.bases.rarity: 2
+#
+# structure.bases.spawner - true/false. Whether bases can have monster spawners
+  structure.bases.spawner: true
+#
+# structure.mazes.rarity - 0-10. Rarity for room clusters. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.mazes.rarity: 2
+#
+# structure.mazes.minrooms - 1-99. Minimum number of rooms the generator attempts to make
+  structure.mazes.minrooms: 8
+#
+# structure.mazes.maxrooms - 1-99. Maximum number of rooms the generator attempts to make
+  structure.mazes.maxrooms: 32
+#
+# structure.mazes.spawner - true/false. Whether mazes can have monster spawners
+  structure.mazes.spawner: true
+#
+# structure.skeletons.rarity  - 0-10. Rarity for skeletons. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.skeletons.rarity: 2
+#
+# structure.sandcastle.rarity  - 0-10. Rarity for sand castles. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.sandcastle.rarity: 2
+#
+# structure.village.rarity  - 0-10. Rarity for villages. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.village.rarity: 2
+#
+# structure.supergarden.rarity:  - 0-10. Rarity for super gardens. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.supergarden.rarity: 2
+#
+# structure.oasis.rarity  - 0-10. Rarity for oasises. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.oasis.rarity: 2
+#
+# structure.sarlacc.rarity:  - 0-10. Rarity for sarlaccs. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.sarlacc.rarity: 2
+#
+# structure.hugetree.rarity:  - 0-10. Rarity for huge trees. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.hugetree.rarity: 2
+#
+# structure.spiderforest.rarity:  - 0-10. Rarity for spider forests. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.spiderforest.rarity: 2
+#
+# structure.swamptemple.rarity:  - 0-10. Rarity for swamp temples. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.swamptemple.rarity: 2
+#
+# structure.treehut.rarity:  - 0-10. Rarity for tree huts. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.treehut.rarity: 2
+#
+# structure.mustafarbase.rarity:  - 0-10. Rarity for mustafar bases. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.mustafarbase.rarity: 2
+#
+# structure.mustafartemple.rarity:  - 0-10. Rarity for mustafar temples. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  structure.mustafartemple.rarity: 2
+#
+# generate.logs - true/false. Whether frozen logs should be generated
+  generate.logs: true
+#
+# generate.caves.rarity - 0-10. Rarity for caves. 0 is off, 1-10 is rarity (1 = common, 10 = very rare)
+  generate.caves.rarity: 2
+#
+# generate.ores - true/false. Whether ore should be generated
+  generate.ores: true
+#
+# generate.extendedore - true/false. If true then ores can use type id's>255 and its data value can be set.
+#                        Warning: Extended ores are much slower to generate!
+  generate.extendedore: true
+#
+# generate.cactuses - true/false. Whether cactuses should be generated
+  generate.cactuses: true
+#
+# generate.shrubs - true/false. Whether shrubs should be generated
+  generate.shrubs: true
+#
+# generate.mushroomhuts - true/false. Whether mushroom huts should be generated
+  generate.mushroomhuts: true
+#
+# rules.dropice - true/false. Whether ice should drop ice blocks when destroyed. 
+  rules.dropice: true
+#
+# rules.droppackedice - true/false. Whether packed ice should drop packed ice blocks when destroyed. 
+  rules.droppackedice: true
+#
+# rules.dropsnow - true/false. Whether snow blocks should drop snow blocks when destroyed. 
+  rules.dropsnow: true
+#
+# rules.freezewater - true/false. Whether water should freeze when placed above stone layer. 
+  rules.freezewater: true
+#
+# rules.freezelava - true/false. Whether lava should freeze when placed above stone layer. 
+  rules.freezelava: true
+#
+# rules.plantsgrow - true/false. Whether plants and trees can grow under open sky. 
+  rules.plantsgrow: false
+#
+# rules.grassspread - true/false. Whether grass can spread under open sky. 
+  rules.grassspread: false
+#
+# rules.stopmelt - true/false. Whether ice and snow should be able to melt above stone layer. 
+  rules.stopmelt: true
+#
+# rules.limitslime - true/false. Whether slime can only spawn in the stone layer. 
+  rules.limitslime: true
+#
+# rules.snowgravity - true/false. Whether gravity is applied to snow blocks.
+  rules.snowgravity: false
+#
+# rules.volcanoes - true/false. Whether volcanoes should be generated in mustafar worlds
+  rules.volcanoes: true
+#
+# rules.rfg.enable - true/false. Whether it's possible to use a Repulsor Field Generator
+  rules.rfg.enable: true
+#
+# rules.rfg.coal - 0-4096. Number of usages of a Repulsor Field Generator per Coal. 0 = infinite
+  rules.rfg.coal: 5
+#
+# rules.rfg.coal - 0-4096. Number of usages of a Repulsor Field Generator per Redstone. 0 = infinite
+  rules.rfg.coal: 10
+#
+# rules.rfg.name - Name of the Repulsor Field Generator
+  rules.rfg.name: Repulsor Field Generator
+#
+# rules.rfg.message1 - Message sent when using an empty bucket on lava in mustafar world without a rfg.
+  rules.rfg.message1: "&cYou need a Repulsor Field Generator piston to extract ore from lava."
+#
+# rules.rfg.message2 - Message sent when using a rfg without restone in inventory.
+  rules.rfg.message2: "&cYou need Redstone to power the Repulsor Field Generator."
+#
+# rules.rfg.message3 - Message sent when using a rfg without coal in inventory.
+  rules.rfg.message3: "&cYou need Coal to power the Repulsor Field Generator."
+#
+# rules.rfg.message4 - Message sent when using a rfg without any room in inventory.
+  rules.rfg.message4: "&cInventory full."
+#
+# rules.lavaburn - true/false. Whether lava burns the player when near it in mustafar worlds.
+  rules.lavaburn: true
+#
+# rules.placewater - true/false. Whether a player can place water using a bucket in a mustafar world.
+  rules.placewater: true
+#
+# rules.lessstone - true/false. Reduces the amount of blocks you get from breaking stone.
+  rules.lessstone: true
+#
+# rules.snowgravity - true/false. Whether gravity is applied to snow blocks.
+  rules.snowgravity: false
+#
+# rules.environment.period - Positive integer value. Period between environment damage checks. 0 = no damage (global off)
+#                            2 is recommended.
+  rules.environment.period: 2
+#
+# rules.environment.suit - true/false. Enable or disable environment suit.
+  rules.environment.suit: true
+#
+# rules.freeze.damage - Positive integer value. Damage taken when freezing. 0 = off
+  rules.freeze.damage: 2
+#
+# rules.freeze.stormdamage - Positive integer value. Extra damage taken during storms. 0 = no damage
+  rules.freeze.stormdamage: 1
+#
+# rules.freeze.message - Message sent when freezing
+  rules.freeze.message: "&bYou are freezing. Find shelter!"
+#
+# rules.heat.damage - Positive integer value. Damage taken when over heated. 0 = off
+  rules.heat.damage: 2
+#
+# rules.heat.message1 - Message sent when moving into water
+  rules.heat.message1: "&6The water removes your thirst."
+#
+# rules.heat.message2 - Message sent when getting thirsty
+  rules.heat.message2: "&6Your are starting to feel thirsty."
+#
+# rules.heat.message3 - Message sent when very thirsty
+  rules.heat.message3: "&6Your feel very thirsty."
+#
+# rules.heat.message4 - Message sent when taking heat damage
+  rules.heat.message4: "&6You are exhausted from the heat. Find water or shelter!"
+#
+# rules.mosquito.damage - Positive integer value. Damage taken from mosquito. 0 = off
+  rules.mosquito.damage: 1
+#
+# rules.mosquito.rarity - Rarity of mosquito swarms. 1-10 (1 = common, 10 = very rare)
+  rules.mosquito.rarity: 5
+#
+# rules.mosquito.runfree  Distance to run to get free of mosquitos. (10-100)
+  rules.mosquito.runfree: 10
+#
+# rules.mosquito.message1 - Message sent when losing the mosquitos
+  rules.mosquito.message1: "&2You seem to have lost the mosquito swarm."
+#
+# rules.mosquito.message2 - Message sent when hearing mosquitos.
+  rules.mosquito.message2: "&2You hear some buzzing nearby."
+#
+# rules.mosquito.message3 - Message sent when seeing mosquitos.
+  rules.mosquito.message3: "&2You can see a swarm of huge mosquitos nearby."
+#
+# rules.mosquito.message4 - Message sent when attacked by mosquitos.
+  rules.mosquito.message4: "&2Mosquitos are attacking you! Run!!"
+#
+# rules.leech.damage - Positive integer value. Damage taken from mosquito. 0 = off
+  rules.leech.damage: 1
+#
+# rules.leech.rarity - Rarity of leeches. 1-10 (1 = common, 10 = very rare)
+  rules.leech.rarity: 5
+#
+# rules.leech.message1 - Message sent when losing the leeches
+  rules.leech.message1: "&2You manage to remove all leeches."
+#
+# rules.leech.message2 - Message sent when close to leeches.
+  rules.leech.message2: "&2You notice something moving in the water nearby."
+#
+# rules.leech.message3 - Message sent when seeing leeches.
+  rules.leech.message3: "&2You can see leeches moving in the water."
+#
+# rules.leech.message4 - Message sent when attacked by leeches.
+  rules.leech.message4: "&2Leeches are attacking you! Get out of the water!"
+#
+# rules.leech.message5 - Message sent when sucked dry by leeches.
+  rules.leech.message5: "&2Leeches are sucking you dry, run to shake them off!"
+#
+# rules.spawn.neutral.on - true/false. turn on or off the hothgenerator's own neutral mob spawning.
+  rules.spawn.neutral.on: true
+#
+# rules.spawn.neutral.rarity - Rarity of neutral mob spawns 1-10 
+  rules.spawn.neutral.rarity: 2
+#
+# rules.spawn.neutral.mobs - Comma separated list of which neutral mobs to spawn.
+#                            Currently supported neutral mobs:
+#                             chicken,cow,mushroom_cow,ocelot,pig,sheep,wolf,horse
+  rules.spawn.neutral.mobs: chicken,cow,mushroom_cow,ocelot,pig,sheep,wolf,horse
+#
+# recipe.warm.suit.name - Name of warm suit 
+  recipe.warm.suit.name: "Warm Suit"
+#
+# recipe.warm.suit.description - Description of warm suit 
+  recipe.warm.suit.description: "Protect yourself from cold weather"
+#
+# recipe.repellent.suit.name - Name of repellent suit 
+  recipe.repellent.suit.name: "Repellent Suit"
+#
+# recipe.repellent.suit.description - Description of repellent suit 
+  recipe.repellent.suit.description: "Protect yourself from mosquito and leech"
+#
+# recipe.cooling.suit.name - Name of cooling suit 
+  recipe.cooling.suit.name: "Cooling Suit"
+#
+# recipe.cooling.suit.description - Description of cooling suit 
+  recipe.cooling.suit.description: "Protect yourself from dehydration"
+#
+# recipe.glass.suit.name - Name of glass suit 
+  recipe.glass.suit.name: "Glass Suit"
+#
+# recipe.glass.suit.description - Description of glass suit 
+  recipe.glass.suit.description: "Protect yourself from burning"

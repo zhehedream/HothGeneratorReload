@@ -1,0 +1,141 @@
+# This is an example custom schematic.
+#
+# All schematic files must have the ".sm" file ending. Any other
+# file will be ignored.
+#
+# Empty rows and rows starting with # or ; are ignored.
+#
+# Beyond that only a rudimentary error reporting scheme is coded into the
+# plugin. If you make some error it will try to report where it is. But
+# mostly you must simply be clever enough to enter the data correctly.
+#
+# As for what type id's and data values to use in the raw block data
+# it is totally up to you to get it right.
+#
+# Treat all fields as required fields.
+#
+# Field descriptions:
+#  ENABLED: - Must be set to true or false. Schematics with false in
+#             this field won't be rendered into the world.
+#  WIDTH: - The width of the schematics in blocks
+#  LENGTH: - The length of the schematics in blocks
+#  HEIGHT: - the height of the schematics in blocks
+#  TYPE: - Type of schematics. Decides where it is placed in the world.
+#          0=on surface, 1=in ice/sand/dirt layer, 2=in stone layer
+#  YOFFSET: - Only used if Type is 0. Offsets the schematic from the surface.
+#  RARITY: - Any positive value. The schematic will be inserted in one
+#            per rarity chunk.
+#            Example: 50
+#            The plugin will attempt to insert this schematic into
+#            every 50'th generated chuck on average.
+#            Integer value.
+#            If set to 0 the schematics will be loaded but not rendered.
+#  RANDOM: - Must be above 0 and below the RARITY value. See it as the
+#            random seed for this schematic.
+#            Integer value.
+#  LOOT: - Name of the Loot list file that should be used for any chests in
+#          this schematic. Leave blank to use the internal loot list.
+#  LOOTMIN: - Minimum number of stacks a chest in this schematic will contain
+#  LOOTMAX: - Maximum number of stacks a chest in this schematic will contain
+#  WORLDS: - Comma separated list of all worlds in which this schematic should
+#            be generated. Leave blank to generate in all hothgenerator worlds.
+#  MATRIX: - You must enter the schematic block type and data matrix
+#            after this line.
+#            Each line represents all types and data values for a
+#            row of blocks in your schematics. Each value must be
+#            comma separated. First enter all block type id's for the row,
+#            followed by all data values for the row.
+#
+#            Example row for a width: 3 schematic:
+#
+#            98,98,98, 0,1,2
+#
+#            This will generate a row of three brick blocks. The first
+#            block will have data value 0, the next 1 and the last 2.
+#            In this case the data value represents the type of stone brick
+#            block.
+#
+#            An exception to this is mob spawners. The data value is used to
+#            set the spawn entity id instead of the data value. If the
+#            data value is 0 then it will pick a random hostile mob type.
+#
+#            Set the typeid to -1 and that block will not be rendered. Use
+#            this for masking.
+#
+#            Example:
+#            -1, 0, -1,  0, 0, 0
+#
+#            The first and last block will not be changed in the world. But the
+#            second will be set to empty.
+#
+#            It is also possible to spawn mobs by setting typeid to -2 and the
+#            data value to the entity id. The block itself will be empty.
+#
+#            Example:
+#            0, -2, 0,  0, 120, 0
+#
+#            A villager will be spawned and the block where it is spawned will
+#            be empty
+#
+# The example below represents a classic minecraft dungeon with two chests and
+# a zombie spawner. Use it to get a grasp of how to enter all rows in a layer
+# and how to enter all layers. Remember that the plugin will ignore any empty
+# lines and lines starting with # or ;. This means that those lines have no
+# meaning for the plugin and are only there for your benefit.
+#           
+ENABLED: false
+WIDTH: 7
+LENGTH: 9
+HEIGHT: 4
+TYPE: 2
+RARITY: 500
+RANDOM: 23
+LOOT: 
+LOOTMIN: 2
+LOOTMAX: 10
+WORLDS: 
+MATRIX:
+# Layer 0
+#         Type                      Data
+  4,  4,  4,  4,  4,  4,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  4,  4,  4,  4,  4,  4,    0,  0,  0,  0,  0,  0,  0
+# Layer 1
+#         Type                      Data
+  4,  4,  4,  4,  4,  4,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  4,  4,  4,  4,  4,  4,    0,  0,  0,  0,  0,  0,  0
+# Layer 2
+#         Type                      Data
+  4,  4,  4,  4,  4,  4,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0, 54,  0,  0,  4,    0,  0,  0,  3,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0, 52,  0, 54,  4,    0,  0,  0, 54,  0,  4,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  0,  0,  0,  0,  0,  4,    0,  0,  0,  0,  0,  0,  0
+  4,  4,  4,  4,  4,  4,  4,    0,  0,  0,  0,  0,  0,  0
+# Layer 3
+#         Type                      Data
+ 48, 48, 48, 48, 48, 48, 48,    0,  0,  0,  0,  0,  0,  0
+ 48, 48, 48, 48, 48, 48, 48,    0,  0,  0,  0,  0,  0,  0
+ 48, 48, 48, 48, 48, 48, 48,    0,  0,  0,  0,  0,  0,  0
+ 48, 48, 48, 48, 48, 48, 48,    0,  0,  0,  0,  0,  0,  0
+ 48, 48, 48, 48, 48, 48, 48,    0,  0,  0,  0,  0,  0,  0
+ 48, 48, 48, 48, 48, 48, 48,    0,  0,  0,  0,  0,  0,  0
+ 48, 48, 48, 48, 48, 48, 48,    0,  0,  0,  0,  0,  0,  0
+ 48, 48, 48, 48, 48, 48, 48,    0,  0,  0,  0,  0,  0,  0
+ 48, 48, 48, 48, 48, 48, 48,    0,  0,  0,  0,  0,  0,  0

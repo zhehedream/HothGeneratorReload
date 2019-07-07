@@ -1,0 +1,148 @@
+name: HothGenerator
+version: "2.6"
+main: biz.orgin.minecraft.hothgenerator.HothGeneratorPlugin
+load: POSTWORLD
+description: Generates a really icy world.
+author: orgin_org
+depend: [WorldEdit]
+softdepend: [WorldEdit]
+api-version: 1.13
+commands:
+   hothreload:
+      description: Reload the hoth configuration.
+      usage: /hothreload
+      permission: hothgenerator.hothreload
+      permission-message: You don't have permission to use the hothreload command
+   hothexport:
+      description: Export the selected region to a schematic file.
+      usage: /hothexport filename [maskid]
+      permission: hothgenerator.hothexport
+      permission-message: You don't have permission to use the hothexport command
+   hothsavell:
+      description: Save the named loot list.
+      usage: /hothsavell filename
+      permission: hothgenerator.hothsavell
+      permission-message: You don't have permission to use the hothsavell command
+   hothregion:
+      description: Access the hoth region commands
+      usage: /hothregion [info|flag|remove] [parameters...]
+      permission: hothgenerator.hothregion
+      permission-message: You don't have permission to use the hothregion command
+   hothpaste:
+      description: Paste a schematic into the world
+      usage: /hothpaste [int|ext] schematic [north|east|south|west]
+      permission: hothgenerator.hothpaste
+      permission-message: You don't have permission to use the hothpaste command
+   hothundo:
+      description: Undo the last schematic paste
+      usage: /hothundo
+      permission: hothgenerator.hothundo
+      permission-message: You don't have permission to use the hothundo command
+   hothlist:
+      description: List all available schematics
+      usage: /hothlist [int|ext]
+      permission: hothgenerator.hothlist
+      permission-message: You don't have permission to use the hothlist command
+   hothinfo:
+      description: Shows some information about the plugin
+      usage: /hothinfo
+      permission: hothgenerator.hothinfo
+      permission-message: You don't have permission to use the hothinfo command
+   hothaddworld:
+      description: Add a new world to the configuration
+      usage: /hothaddworld worldname [hoth|tatooine|dagobah|mustafar]
+      permission: hothgenerator.hothaddworld
+      permission-message: You don't have permission to use the hothaddworld command
+   hothdelworld:
+      description: Delete a world from the configuration
+      usage: /hothdelworld worldname
+      permission: hothgenerator.hothdelworld
+      permission-message: You don't have permission to use the hothdelworld command
+   hothsetworldtype:
+      description: Set the world type
+      usage: /hothsetworldtype worldname [hoth|tatooine|dagobah|mustafar]
+      permission: hothgenerator.hothsetworldtype
+      permission-message: You don't have permission to use the hothsetworldtype command
+   hothsetworldflag:
+      description: Set a flag for a hoth world
+      usage: /hothsetworldflag world flag value
+      permission: hothgenerator.hothsetworldflag
+      permission-message: You don't have permission to use the hothsetworldflag command
+   hothworldinfo:
+      description: Prints information about a hoth world or lists all hoth worlds
+      usage: /hothworldinfo world
+      permission: hothgenerator.hothworldinfo
+      permission-message: You don't have permission to use the hothworldinfo command
+permissions:
+    hothgenerator.*:
+        description: Gives access to all hothgenerator commands
+        children:
+            hothgenerator.hothreload: true
+            hothgenerator.hothexport: true
+            hothgenerator.hothsavell: true
+            hothgenerator.hothregion: true
+            hothgenerator.hothpaste: true
+            hothgenerator.hothundo: true
+            hothgenerator.hothlist: true
+            hothgenerator.hothinfo: true
+            hothgenerator.hothaddworld: true
+            hothgenerator.hothdelworld: true
+            hothgenerator.hothsetworldtype: true
+            hothgenerator.hothsetworldflag: true
+            hothgenerator.hothworldinfo: true
+    hothgenerator.hothreload:
+        description: Reload the hoth configuration.
+        default: op
+    hothgenerator.hothexport:
+        description: Export the selected region to a schematic file.
+        default: op
+    hothgenerator.hothsavell:
+        description: Save the named loot list.
+        default: op
+    hothgenerator.hothregion:
+        description: Access the hoth region commands
+        default: op
+    hothgenerator.hothpaste:
+        description: Paste a schematic into the world
+        default: op
+    hothgenerator.hothundo:
+        description: Undo the last schematic paste
+        default: op
+    hothgenerator.hothlist:
+        description: List all available schematics
+        default: op
+    hothgenerator.hothinfo:
+        description: Prints information about a hoth world
+        default: op
+    hothgenerator.hothaddworld:
+        description: Add a new world to the configuration
+        default: op
+    hothgenerator.hothdelworld:
+        description: Delete a world from the configuration
+        default: op
+    hothgenerator.hothsetworldtype:
+        description: Set the world type
+        default: op
+    hothgenerator.hothsetworldflag:
+        description: Set a flag for a hoth world
+        default: op
+    hothgenerator.hothworldinfo:
+        description: Prints information about a hoth world or lists all hoth worlds
+        default: op
+    hothgenerator.freeze:
+        description: Enables freezing environment effect in hoth.
+        default: true
+    hothgenerator.heat:
+        description: Enables heat environment effect in tatooine.
+        default: true
+    hothgenerator.leech:
+        description: Enables leech environment effect in dagobah.
+        default: true
+    hothgenerator.mosquito:
+        description: Enables mosquito environment effect in dagobah.
+        default: true
+    hothgenerator.lavaburn:
+        description: Enables lava burn environment effect in mustafar.
+        default: true
+        
+            
