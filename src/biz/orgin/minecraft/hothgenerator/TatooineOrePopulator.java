@@ -1,9 +1,7 @@
 package biz.orgin.minecraft.hothgenerator;
 
-import com.sk89q.worldedit.bukkit.BukkitAdapter;
-import com.sk89q.worldedit.world.block.BlockState;
-import com.sk89q.worldedit.world.registry.LegacyMapper;
 import java.util.Random;
+import me.zhehe.MagicIdHandler;
 import org.bukkit.Chunk;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -59,7 +57,6 @@ public class TatooineOrePopulator extends BlockPopulator
 		int dx = originX;
 		int dy = originY;
 		int dz = originZ;
-		LegacyMapper lm = LegacyMapper.getInstance();
 		for (int i = 0; i < amount; i++)
 		{
 			int dir = random.nextInt(6);
@@ -97,9 +94,8 @@ public class TatooineOrePopulator extends BlockPopulator
 			{
 				block.setType(type);
                                 int id = MaterialManager.toID(type);
-                                BlockState state = lm.getBlockFromLegacy(id, data);
-                                if(state != null) {
-                                    BlockData sdata = BukkitAdapter.adapt(state);
+                                BlockData sdata = MagicIdHandler.fromId(id, data);
+                                if(sdata != null) {
                                     block.setBlockData(sdata, false);
                                 }
 				//DataManager.setData(block, data, false);

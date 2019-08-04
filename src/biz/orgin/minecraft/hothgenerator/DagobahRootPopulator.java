@@ -11,6 +11,7 @@ import org.bukkit.block.Biome;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Leaves;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.material.Tree;
@@ -30,7 +31,10 @@ public class DagobahRootPopulator  extends BlockPopulator
 	}
 
 	@Override
-	public void populate(World world, Random random, Chunk chunk)
+        public void populate(World world, Random random, Chunk chunk) {
+            ;
+        }
+	public void otherPopulate(World world, Random random, Chunk chunk)
 	{
 		int rand = random.nextInt(10);
 		if(rand>5)
@@ -44,8 +48,8 @@ public class DagobahRootPopulator  extends BlockPopulator
 	
 	private void placeRoot(World world, Random random, Chunk chunk)
 	{
-		int x = 16*chunk.getX() + 8 + random.nextInt(16);
-		int z = 16*chunk.getZ() + 8 + random.nextInt(16);
+		int x = 16*chunk.getX() + 3 + random.nextInt(10);
+		int z = 16*chunk.getZ() + 3 + random.nextInt(10);
 		
 		Biome biome = world.getBiome(x, z);
 		
@@ -114,8 +118,8 @@ public class DagobahRootPopulator  extends BlockPopulator
 				int q=0;
 				while(this.getFreefall(block)>maxy && q<5)
 				{
+                                        block.setType(Material.OAK_LOG);
 					BlockState state = block.getState();
-					state.setType(Material.OAK_LOG);
 					Tree dirlog = (Tree)state.getData();
 					dirlog.setDirection(BlockFace.UP);
 					dirlog.setSpecies(TreeSpecies.GENERIC);
@@ -132,8 +136,8 @@ public class DagobahRootPopulator  extends BlockPopulator
 				{
 					while(this.getDepth(block)>miny && q<5)
 					{
+                                                block.setType(Material.OAK_LOG);
 						BlockState state = block.getState();
-						state.setType(Material.OAK_LOG);
 						Tree dirlog = (Tree)state.getData();
 						dirlog.setDirection(BlockFace.DOWN);
 						dirlog.setSpecies(TreeSpecies.GENERIC);
@@ -147,9 +151,8 @@ public class DagobahRootPopulator  extends BlockPopulator
 						break; // next section
 					}
 				}
-
+                                block.setType(Material.OAK_LOG);
 				BlockState state = block.getState();
-				state.setType(Material.OAK_LOG);
 				Tree dirlog = (Tree)state.getData();
 				dirlog.setDirection(direction);
 				dirlog.setSpecies(TreeSpecies.GENERIC);
@@ -179,8 +182,8 @@ public class DagobahRootPopulator  extends BlockPopulator
 		
 		if(block.isEmpty())
 		{
+                        block.setType(Material.OAK_LOG);
 			BlockState state = block.getState();
-			state.setType(Material.OAK_LOG);
 			Tree tree = (Tree)state.getData();
 			tree.setDirection(BlockFace.UP);
 			tree.setSpecies(TreeSpecies.GENERIC);
@@ -241,13 +244,13 @@ public class DagobahRootPopulator  extends BlockPopulator
 	
 	private void addLeaf(World world, Random random, HothSet root, Block block, BlockFace face1, BlockFace face2, int vineProbability)
 	{
-		BlockState state = block.getState();
-		state.setType(Material.OAK_LEAVES);
-                Leaves leavesData = (Leaves) state;
+                block.setType(Material.OAK_LEAVES);
+		BlockData data = block.getBlockData();
+                Leaves leavesData = (Leaves) data;
                 leavesData.setPersistent(true);
                 block.setBlockData(leavesData);
 		
-		Position position = new Position(state);
+		Position position = new Position(block.getState());
 		if(!root.contains(position)) // Only add if it doesn't exist
 		{
 			root.add(position);

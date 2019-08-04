@@ -25,9 +25,8 @@ import org.bukkit.plugin.Plugin;
 
 import biz.orgin.minecraft.hothgenerator.schematic.RotatedSchematic;
 import biz.orgin.minecraft.hothgenerator.schematic.Schematic;
-import com.sk89q.worldedit.bukkit.BukkitAdapter;
-import com.sk89q.worldedit.world.registry.LegacyMapper;
 import java.util.logging.Level;
+import me.zhehe.MagicIdHandler;
 import org.bukkit.Bukkit;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.generator.ChunkGenerator.ChunkData;
@@ -68,7 +67,6 @@ public class HothUtils
 		int[][][] matrix = schematic.getMatrix();
 		
 		Set<Position>delays = new HashSet<Position>();
-		LegacyMapper lm = LegacyMapper.getInstance();
 		for(int yy=0;yy<height;yy++)
 		{
 			for(int zz=0;zz<length;zz++)
@@ -128,9 +126,8 @@ public class HothUtils
 						{
 							block.setType(Material.CHEST);
                                                         
-                                                        com.sk89q.worldedit.world.block.BlockState state = lm.getBlockFromLegacy(type, data);
-                                                        if(state != null) {
-                                                            BlockData data2 = BukkitAdapter.adapt(state);
+                                                        BlockData data2 = MagicIdHandler.fromId(type, data);
+                                                        if(data2 != null) {
                                                             block.setBlockData(data2, false);
                                                         }
 							Chest chest = (Chest)block.getState();
@@ -157,7 +154,7 @@ public class HothUtils
 							{
 								//BlockState state = block.getState();
 								//state.setType(MaterialManager.toMaterial(type));
-                                                                BlockData bd = BukkitAdapter.adapt(lm.getBlockFromLegacy(type, data));
+                                                                BlockData bd = MagicIdHandler.fromId(type, data);
                                                                 block.setBlockData(bd);
 								//state.update(true, false);
                                                                 //block.setType(MaterialManager.toMaterial(type));
@@ -166,9 +163,8 @@ public class HothUtils
 							{
 								block.setType(MaterialManager.toMaterial(type));
                                                                 if(type == 85 || type == 188 || type == 189 || type == 190 || type == 191 || type == 192 || type == 101) continue; //for fence
-                                                                com.sk89q.worldedit.world.block.BlockState state = lm.getBlockFromLegacy(type, data);
-                                                                if(state != null) {
-                                                                    BlockData data2 = BukkitAdapter.adapt(state);
+                                                                BlockData data2 = MagicIdHandler.fromId(type, data);
+                                                                if(data2 != null) {
                                                                     block.setBlockData(data2, false);
                                                                 }
 								//DataManager.setData(block, (byte)data, false);
@@ -201,9 +197,8 @@ public class HothUtils
 		{
 			Block block = world.getBlockAt(posArray[i].x, posArray[i].y, posArray[i].z);
 			//block.setType(MaterialManager.toMaterial(posArray[i].type));
-                        com.sk89q.worldedit.world.block.BlockState state = lm.getBlockFromLegacy(posArray[i].type, posArray[i].data);
-                        if(state != null) {
-                            BlockData data2 = BukkitAdapter.adapt(state);
+                        BlockData data2 = MagicIdHandler.fromId(posArray[i].type, posArray[i].data);
+                        if(data2 != null) {
                             block.setBlockData(data2, false);
                         }
 

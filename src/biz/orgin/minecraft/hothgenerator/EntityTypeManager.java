@@ -85,7 +85,7 @@ public class EntityTypeManager
 	 * Returns a classic block type id related to the material
 	 */
 	//@SuppressWarnings("deprecation")
-	public static int toID(EntityType entityType)
+	/*public static int toID(EntityType entityType)
 	{
 		if(entityType.equals(EntityType.DROPPED_ITEM))
 		{
@@ -340,7 +340,7 @@ public class EntityTypeManager
 			return 200;
 		}
 		return entityType.getTypeId();
-	}
+	}*/
 
 	/*
 	 * Returns a classic block type id related to the material
@@ -414,7 +414,7 @@ public class EntityTypeManager
 		}
 		else if(id==23)
 		{
-			return EntityType.TIPPED_ARROW;
+			return EntityType.SPECTRAL_ARROW;
 		}
 		else if(id==24)
 		{

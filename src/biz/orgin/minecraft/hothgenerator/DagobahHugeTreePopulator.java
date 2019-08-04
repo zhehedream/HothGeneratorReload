@@ -1,7 +1,6 @@
 package biz.orgin.minecraft.hothgenerator;
 
 import java.util.Random;
-import org.bukkit.Bukkit;
 
 import org.bukkit.Chunk;
 import org.bukkit.Material;
@@ -10,7 +9,6 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Leaves;
 import org.bukkit.generator.BlockPopulator;
 import org.bukkit.material.Tree;
@@ -26,32 +24,6 @@ public class DagobahHugeTreePopulator  extends BlockPopulator
 		this.plugin = HothGenerator.getPlugin();
 		this.height = height;
 	}
-        
-        static class PlaceHugeTreeTask extends HothRunnable {
-            private static final long serialVersionUID = 2297078006521966210L;
-            private int chunkX;
-            private int chunkZ;
-            private Random random;
-            private DagobahHugeTreePopulator pop;
-            public PlaceHugeTreeTask(World world, Random random, int chunkX, int chunkZ, DagobahHugeTreePopulator pop)
-            {
-            	this.setName("PlaceHugeTree");
-		this.setWorld(world);
-		this.setPlugin(null);
-                this.chunkX = chunkX;
-		this.chunkZ = chunkZ;
-                this.random = random;
-                this.pop = pop;
-            }
-            public String getParameterString() {
-		return "chunkx=" + chunkX + " chunkz=" + chunkZ;
-            }
-            @Override
-            public void run(){
-                World w = this.getWorld();
-                pop.placeHugeTree(w, random, w.getChunkAt(chunkX, chunkZ));
-            }
-        }
 
 	@Override
 	public void populate(World world, Random random, Chunk chunk)
@@ -62,17 +34,8 @@ public class DagobahHugeTreePopulator  extends BlockPopulator
 		if(rarity!=0)
 		{
 			if(rand == random.nextInt((rarity * 40)))
-                        //if(true)
 			{
 				this.placeHugeTree(world, random, chunk);
-                            //plugin.addTask(new PlaceHugeTreeTask(world, random, chunk.getX(), chunk.getZ(), this));
-                            /*DagobahHugeTreePopulator pop = this;
-                            Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-                                @Override
-                                public void run() {
-                                        pop.placeHugeTree(world, random, chunk);
-                                }
-                            }, 1);*/
 			}
 		}			
 	}
@@ -183,8 +146,8 @@ public class DagobahHugeTreePopulator  extends BlockPopulator
 					{
 						break; // stop rendering this branch
 					}
+                                        block.setType(Material.OAK_LOG);
 					BlockState state = block.getState();
-					state.setType(Material.OAK_LOG);
 					Tree tree = (Tree)state.getData();
 					tree.setDirection(direction);
 					tree.setSpecies(TreeSpecies.GENERIC);
@@ -274,8 +237,6 @@ public class DagobahHugeTreePopulator  extends BlockPopulator
 				if(dist>=inner && dist<=outer)
 				{
 					Block newBlock = world.getBlockAt(i, y, j);
-					//BlockState state = newBlock.getState();
-					//state.setType(Material.OAK_LEAVES);
                                         newBlock.setType(Material.OAK_LEAVES);
                                         Leaves leavesData = (Leaves) newBlock.getBlockData();
                                         leavesData.setPersistent(true);
@@ -418,8 +379,8 @@ public class DagobahHugeTreePopulator  extends BlockPopulator
 				if(dist<=size)
 				{
 					Block newBlock = world.getBlockAt(i, y, j);
+                                        newBlock.setType(Material.OAK_LOG);
 					BlockState state = newBlock.getState();
-					state.setType(Material.OAK_LOG);
 					Tree tree = (Tree)state.getData();
 					tree.setSpecies(TreeSpecies.GENERIC);
 					state.update(true, false);
@@ -455,8 +416,8 @@ public class DagobahHugeTreePopulator  extends BlockPopulator
 				Material type=block.getType();
 				while(!type.equals(Material.DIRT) && !type.equals(Material.STONE) && block.getY()>64)
 				{
+                                        block.setType(Material.OAK_LOG);
 					BlockState state = block.getState();
-					state.setType(Material.OAK_LOG);
 					Tree tree = (Tree)state.getData();
 					tree.setSpecies(TreeSpecies.GENERIC);
 					tree.setDirection(BlockFace.UP);

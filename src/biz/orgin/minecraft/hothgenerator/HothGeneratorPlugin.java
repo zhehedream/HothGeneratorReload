@@ -23,7 +23,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
 //import com.sk89q.worldedit.bukkit.selections.CuboidSelection;
 //import com.sk89q.worldedit.bukkit.selections.Selection;
 
@@ -31,8 +30,8 @@ import biz.orgin.minecraft.hothgenerator.WorldType.InvalidWorldTypeException;
 import biz.orgin.minecraft.hothgenerator.schematic.LoadedSchematic;
 import biz.orgin.minecraft.hothgenerator.schematic.Schematic;
 import biz.orgin.minecraft.hothgenerator.HothGenerator;
-import com.sk89q.worldedit.internal.annotation.Selection;
-import com.sk89q.worldedit.regions.CuboidRegion;
+import me.zhehe.MagicIdHandler;
+import org.bukkit.Bukkit;
 
 /**
  * Main plugin class
@@ -71,6 +70,8 @@ public class HothGeneratorPlugin extends JavaPlugin
 	private FileConfiguration worldConfig;
 	
 	private UndoBuffer undoBuffer;
+        
+        private MagicIdHandler mih;
 	
 	private long id = System.currentTimeMillis();
 	
@@ -82,6 +83,8 @@ public class HothGeneratorPlugin extends JavaPlugin
     public void onEnable()
     { 
     	HothGenerator.setPlugin(this);
+        this.mih = new MagicIdHandler();
+        mih.init(this);
     	
     	this.blockPlaceManager = new BlockPlaceManager(this);
     	this.blockBreakManager = new BlockBreakManager(this);
@@ -148,7 +151,15 @@ public class HothGeneratorPlugin extends JavaPlugin
     	
     	this.undoBuffer = new UndoBuffer();
         
-        RecipeManager.registerRecipe(this);
+        //RecipeManager.registerRecipe(this);
+        HothGeneratorPlugin ins = this;
+        Bukkit.getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+			@Override
+			public void run()
+			{
+				RecipeManager.registerRecipe(ins);
+			}
+	}, 1L);
     }
     
     public void onDisable()

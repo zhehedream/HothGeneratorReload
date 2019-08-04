@@ -1,8 +1,5 @@
 package biz.orgin.minecraft.hothgenerator;
 
-import com.sk89q.worldedit.bukkit.BukkitAdapter;
-import com.sk89q.worldedit.world.block.BlockState;
-import com.sk89q.worldedit.world.registry.LegacyMapper;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;

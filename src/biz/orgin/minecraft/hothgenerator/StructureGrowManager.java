@@ -158,8 +158,8 @@ public class StructureGrowManager implements Listener
 							if((dir&1) != 0)
 							{
 								leaf = curr.getRelative(BlockFace.NORTH);
+                                                                leaf.setType(Material.OAK_LEAVES);
 								state = leaf.getState();
-								state.setType(Material.OAK_LEAVES);
 								Tree leavesD = (Tree)state.getData();
 								leavesD.setSpecies(TreeSpecies.GENERIC);
 								state.setData(leavesD);
@@ -169,8 +169,8 @@ public class StructureGrowManager implements Listener
 							if((dir&2) != 0)
 							{
 								leaf = curr.getRelative(BlockFace.EAST);
+                                                                leaf.setType(Material.OAK_LEAVES);
 								state = leaf.getState();
-								state.setType(Material.OAK_LEAVES);
 								Tree leavesD = (Tree)state.getData();
 								leavesD.setSpecies(TreeSpecies.GENERIC);
 								state.setData(leavesD);
@@ -180,8 +180,8 @@ public class StructureGrowManager implements Listener
 							if((dir&4) != 0)
 							{
 								leaf = curr.getRelative(BlockFace.SOUTH);
+                                                                leaf.setType(Material.OAK_LEAVES);
 								state = leaf.getState();
-								state.setType(Material.OAK_LEAVES);
 								Tree leavesD = (Tree)state.getData();
 								leavesD.setSpecies(TreeSpecies.GENERIC);
 								state.setData(leavesD);
@@ -191,16 +191,15 @@ public class StructureGrowManager implements Listener
 							if((dir&8) != 0)
 							{
 								leaf = curr.getRelative(BlockFace.WEST);
+                                                                leaf.setType(Material.OAK_LEAVES);
 								state = leaf.getState();
-								state.setType(Material.OAK_LEAVES);
 								Tree leavesD = (Tree)state.getData();
 								leavesD.setSpecies(TreeSpecies.GENERIC);
 								state.setData(leavesD);
 								tree.add(new Position(state));
 							}
-
+                                                        leaf.setType(Material.OAK_LEAVES);
 							state = leaf.getState();
-							state.setType(Material.OAK_LEAVES);
 							Tree leavesD = (Tree)state.getData();
 							leavesD.setSpecies(TreeSpecies.GENERIC);
 							state.setData(leavesD);
@@ -208,8 +207,8 @@ public class StructureGrowManager implements Listener
 						}
 						
 						// Add stem
+                                                curr.setType(Material.OAK_LOG);
 						state = curr.getState();
-						state.setType(Material.OAK_LOG);
 						Tree treeD = (Tree)state.getData();
 						treeD.setSpecies(TreeSpecies.GENERIC);
 						state.setData(treeD);
@@ -232,8 +231,8 @@ public class StructureGrowManager implements Listener
 					// Add top leaves
 					if(random.nextInt(4)>0)
 					{
+                                                curr.setType(Material.OAK_LOG);
 						BlockState state = curr.getState();
-						state.setType(Material.OAK_LEAVES);
 						Tree treeD = (Tree)state.getData();
 						treeD.setSpecies(TreeSpecies.GENERIC);
 						state.setData(treeD);

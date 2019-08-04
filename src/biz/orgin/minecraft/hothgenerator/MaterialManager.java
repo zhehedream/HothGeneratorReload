@@ -1,9 +1,6 @@
 package biz.orgin.minecraft.hothgenerator;
 
-import com.sk89q.worldedit.bukkit.BukkitAdapter;
-import com.sk89q.worldedit.world.block.BlockState;
-import com.sk89q.worldedit.world.item.ItemType;
-import com.sk89q.worldedit.world.registry.LegacyMapper;
+import me.zhehe.MagicIdHandler;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
@@ -20,27 +17,18 @@ import org.bukkit.block.data.BlockData;
 public class MaterialManager
 {
         public static int toID(Material material) {
-            if(material.isBlock()) {
-                BlockData data = material.createBlockData();
-                BlockState state = BukkitAdapter.adapt(data);
-                LegacyMapper lm = LegacyMapper.getInstance();
-                int[] res = lm.getLegacyFromBlock(state);
-                if(res == null) return 0;
-                return res[0];
-            } else {
-                LegacyMapper lm = LegacyMapper.getInstance();
-                ItemType it = BukkitAdapter.asItemType(material);
-                int[] res = lm.getLegacyFromItem(it);
-                if(res == null) return 0;
-                return res[0];
+            int id;
+            try {
+                id = material.getId();
+            } catch(Exception ex) {
+                id = 0;
             }
+            return id;
         }
         
         public static Material toMaterial(int id) {
-            LegacyMapper lm = LegacyMapper.getInstance();
-            BlockState state = lm.getBlockFromLegacy(id);
-            if(state == null) return Material.AIR;
-            BlockData data = BukkitAdapter.adapt(state);
+            BlockData data = MagicIdHandler.fromId(id, 0);
+            if(data == null) return Material.AIR;
             return data.getMaterial();
         }
 }

@@ -1,10 +1,8 @@
 package biz.orgin.minecraft.hothgenerator;
 
-import com.sk89q.worldedit.bukkit.BukkitAdapter;
-import com.sk89q.worldedit.world.block.BlockState;
-import com.sk89q.worldedit.world.registry.LegacyMapper;
 import java.util.HashSet;
 import java.util.Set;
+import me.zhehe.MagicIdHandler;
 
 import org.bukkit.World;
 import org.bukkit.block.Block;
@@ -125,7 +123,6 @@ public class Blob
 			Position[] blocks = this.blocks;
 			int start = this.start;
 			int count = this.count;
-                        LegacyMapper lm = LegacyMapper.getInstance();
 			
 			for(int i=start;i<start+count && i<blocks.length;i++)
 			{
@@ -193,9 +190,8 @@ public class Blob
 						catch(Exception e)
 						{
 						}
-                                                BlockState bs = lm.getBlockFromLegacy(type, data);
-                                                BlockData bd = BukkitAdapter.adapt(bs);
-                                                block.setBlockData(bd, false);
+                                                BlockData bd = MagicIdHandler.fromId(type, data);
+                                                if(bd != null) block.setBlockData(bd, false);
 						//DataManager.setData(block, data, false);
 					}
 				}

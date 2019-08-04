@@ -181,8 +181,8 @@ public class DagobahHugeTreeGenerator
 					{
 						break; // stop rendering this branch
 					}
+                                        block.setType(Material.OAK_LOG);
 					BlockState state = block.getState();
-					state.setType(Material.OAK_LOG);
 					Tree tree = (Tree)state.getData();
 					tree.setDirection(direction);
 					tree.setSpecies(TreeSpecies.GENERIC);
@@ -272,8 +272,6 @@ public class DagobahHugeTreeGenerator
 				if(dist>=inner && dist<=outer)
 				{
 					Block newBlock = world.getBlockAt(i, y, j);
-					//BlockState state = newBlock.getState();
-					//state.setType(Material.OAK_LEAVES);
                                         newBlock.setType(Material.OAK_LEAVES);
                                         Leaves leavesData = (Leaves) newBlock.getBlockData();
                                         leavesData.setPersistent(true);
@@ -450,8 +448,8 @@ public class DagobahHugeTreeGenerator
 				if(dist<=size)
 				{
 					Block newBlock = world.getBlockAt(i, y, j);
+                                        newBlock.setType(Material.OAK_LOG);
 					BlockState state = newBlock.getState();
-					state.setType(Material.OAK_LOG);
 					Tree tree = (Tree)state.getData();
 					tree.setSpecies(TreeSpecies.GENERIC);
 					state.update(true, false);
@@ -487,8 +485,8 @@ public class DagobahHugeTreeGenerator
 				Material type=block.getType();
 				while(!type.equals(Material.DIRT) && !type.equals(Material.STONE) && block.getY()>64)
 				{
+                                        block.setType(Material.OAK_LOG);
 					BlockState state = block.getState();
-					state.setType(Material.OAK_LOG);
 					Tree tree = (Tree)state.getData();
 					tree.setSpecies(TreeSpecies.GENERIC);
 					tree.setDirection(BlockFace.UP);

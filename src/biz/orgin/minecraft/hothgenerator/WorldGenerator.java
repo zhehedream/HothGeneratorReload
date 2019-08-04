@@ -1,11 +1,9 @@
 package biz.orgin.minecraft.hothgenerator;
 
-import com.sk89q.worldedit.bukkit.BukkitAdapter;
-import com.sk89q.worldedit.world.block.BlockState;
-import com.sk89q.worldedit.world.registry.LegacyMapper;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import me.zhehe.MagicIdHandler;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -109,25 +107,7 @@ public class WorldGenerator extends ChunkGenerator
 		}
 
         }
-	/*@Override
-	public short[][] generateExtBlockSections(World world, Random random, int chunkx, int chunkz, BiomeGrid biomes)
-	{
-		WorldType worldType = this.getWorldType();
-		
-		switch(worldType)
-		{
-		case TATOOINE:
-			return this.generateExtBlockSectionsTatooine(world, random, chunkx, chunkz, biomes);
-		case DAGOBAH:
-			return this.generateExtBlockSectionsDagobah(world, random, chunkx, chunkz, biomes);
-		case MUSTAFAR:
-			return this.generateExtBlockSectionsMustafar(world, random, chunkx, chunkz, biomes);
-		case HOTH:
-		default: // Default to hoth chunks
-			return this.generateExtBlockSectionsHoth(world, random, chunkx, chunkz, biomes);
-		}
-	}*/
-		
+	
 	public ChunkData generateExtBlockSectionsHoth(World world, Random random, int chunkx, int chunkz, BiomeGrid biomes)
 	{
             //plugin.getLogger().info("# " + Integer.toString(chunkx) + "," + Integer.toString(chunkz));
@@ -137,7 +117,6 @@ public class WorldGenerator extends ChunkGenerator
 		}
                 boolean smooth_snow = false;
                 if(ConfigManager.isSmoothSnow(plugin)) smooth_snow = true;
-		LegacyMapper lm = LegacyMapper.getInstance();
                 
 		int surfaceOffset = ConfigManager.getWorldSurfaceoffset(WorldGenerator.plugin, world);
 		
@@ -346,8 +325,7 @@ public class WorldGenerator extends ChunkGenerator
                                 
                                 if(smooth_snow) {
 				    byte data = (byte)snowcover[z][x].type;
-                                    BlockState state = lm.getBlockFromLegacy(78, data);
-                                    BlockData sdata = BukkitAdapter.adapt(state);
+                                    BlockData sdata = MagicIdHandler.fromId(78, data);
                                     chunk.setBlock(x, y, z, sdata);
                                 }
 				
@@ -1137,6 +1115,8 @@ public class WorldGenerator extends ChunkGenerator
 		//CustomGenerator.generateCustom(WorldGenerator.plugin, world, new Random(random.nextLong()), chunkx, chunkz);
 		
 		HothUtils.replaceTop(chunk, Material.DIRT, Material.STONE, Material.GRASS_BLOCK, WorldGenerator.plugin.getHeight());
+                
+                chunk.setBlock(0, 0, 0, Material.GLASS);
 
 		return chunk;
 	}
@@ -1150,7 +1130,6 @@ public class WorldGenerator extends ChunkGenerator
 		//int mAIR_id = MaterialManager.toID(Material.AIR);
 		boolean smooth_lava = false;
                 if(ConfigManager.isSmoothLava(plugin)) smooth_lava = true;
-		LegacyMapper lm = LegacyMapper.getInstance();
                 
 		Position[][] lavacover = new Position[16][16];
 
@@ -1181,8 +1160,7 @@ public class WorldGenerator extends ChunkGenerator
 				lavacover[z][x] = new Position(rx, lavaLevel, rz, (int) (8.0*((1 - (dLavaLevel - lavaLevel)))));
                                 if(smooth_lava) {
                                     byte data = (byte)lavacover[z][x].type;
-                                    BlockState state = lm.getBlockFromLegacy(10, data);
-                                    BlockData sdata = BukkitAdapter.adapt(state);
+                                    BlockData sdata = MagicIdHandler.fromId(10, data);
                                     chunk.setBlock(x, lavaLevel, z, sdata);
                                 }
                                 
@@ -1609,8 +1587,9 @@ public class WorldGenerator extends ChunkGenerator
 				list.add(new DagobahGrassPopulator(height));
 				list.add(new DagobahTemplePopulator(height));
 				list.add(new DagobahTreeHutPopulator(height));
-				list.add(new DagobahRootPopulator(height));
-				list.add(new DagobahSmallTreePopulator(height));
+                                DagobahRootPopulator tmp = new DagobahRootPopulator(height);
+				//list.add(new DagobahRootPopulator(height));
+				list.add(new DagobahSmallTreePopulator(height, tmp));
 				list.add(new DagobahHugeTreePopulator(height));
 				list.add(new DagobahSpiderForestPopulator(height));
 				//list.add(new DagobahOrePopulator(height));
