@@ -1,11 +1,12 @@
 name: HothGenerator
 version: "2.6"
 main: biz.orgin.minecraft.hothgenerator.HothGeneratorPlugin
-load: POSTWORLD
+load: STARTUP
 description: Generates a really icy world.
 author: orgin_org
 depend: [WorldEdit]
 softdepend: [WorldEdit]
+loadbefore: [Multiverse-Core, MultiWorld]
 api-version: 1.13
 commands:
    hothreload:
