@@ -1,6 +1,8 @@
 package biz.orgin.minecraft.hothgenerator;
 
 
+import java.util.logging.Level;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.LivingEntity;
@@ -51,7 +53,7 @@ public class CreatureSpawnManager implements Listener
 				}
 				
 				// Don't allow naturally spawned mobs in mustafar worlds
-				if(this.plugin.getWorldType(world)==WorldType.MUSTAFAR)
+				if(this.plugin.getWorldType(world)==WorldType.MUSTAFAR && ConfigManager.getMustafarSpawn(plugin, world) == false)
 				{
 					SpawnReason reason = event.getSpawnReason();
 					

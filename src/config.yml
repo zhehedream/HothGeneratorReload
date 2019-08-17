@@ -347,3 +347,6 @@ hoth:
 #
 # recipe.glass.suit.description - Description of glass suit 
   recipe.glass.suit.description: "Protect yourself from burning"
+#
+# rules.spawn.mustafar - true/false. If false, will prevent the normal monsters spawn in Mustafar world. Only FireBeetle will spawn
+  rules.spawn.mustafar: false

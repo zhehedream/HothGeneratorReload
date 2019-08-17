@@ -89,8 +89,12 @@ public class ConfigManager
                 new FlagValue("recipe.cooling.suit.name", new String[]{"[text]", "[blank]"}, String.class),
                 new FlagValue("recipe.cooling.suit.description", new String[]{"[text]", "[blank]"}, String.class),
                 new FlagValue("recipe.glass.suit.name", new String[]{"[text]", "[blank]"}, String.class),
-                new FlagValue("recipe.glass.suit.description", new String[]{"[text]", "[blank]"}, String.class)
+                new FlagValue("recipe.glass.suit.description", new String[]{"[text]", "[blank]"}, String.class),
+                new FlagValue("rules.spawn.mustafar", new String[]{"allow","deny", "[blank]"}, Boolean.class),
 		};
+        public static boolean getMustafarSpawn(HothGeneratorPlugin plugin, World world) {
+            return ConfigManager.getConfigBoolean(plugin, world, "rules.spawn.mustafar", false);
+        }
         public static String getGlassSuitName(HothGeneratorPlugin plugin)
 	{
                 return plugin.getConfig().getString("recipe.glass.suit.name", "Glass Suit");

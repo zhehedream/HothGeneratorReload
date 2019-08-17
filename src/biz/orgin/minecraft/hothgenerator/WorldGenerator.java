@@ -1588,8 +1588,8 @@ public class WorldGenerator extends ChunkGenerator
 				list.add(new DagobahTemplePopulator(height));
 				list.add(new DagobahTreeHutPopulator(height));
                                 DagobahRootPopulator tmp = new DagobahRootPopulator(height);
-				//list.add(new DagobahRootPopulator(height));
-				list.add(new DagobahSmallTreePopulator(height, tmp));
+				list.add(new DagobahRootPopulator(height));
+				list.add(new DagobahSmallTreePopulator(height));
 				list.add(new DagobahHugeTreePopulator(height));
 				list.add(new DagobahSpiderForestPopulator(height));
 				//list.add(new DagobahOrePopulator(height));

@@ -26,100 +26,32 @@ public class DagobahSmallTreePopulator extends BlockPopulator
 	private int height;
 	@SuppressWarnings("unused")
 	private HothGeneratorPlugin plugin;
-        private DagobahRootPopulator other;
 
-	public DagobahSmallTreePopulator(int height, DagobahRootPopulator other)
+	public DagobahSmallTreePopulator(int height)
 	{
 		this.plugin = HothGenerator.getPlugin();
-                this.other = other;
-		this.height = height;
-	}
-        public DagobahSmallTreePopulator(int height)
-	{
-		this.plugin = HothGenerator.getPlugin();
-                this.other = null;
 		this.height = height;
 	}
         
 	@Override
 	public void populate(World world, Random random, Chunk chunk)
 	{
-            populateSpread(world, random, chunk, true);
-        }
-        
-        public void populateSpread(World world, Random random, Chunk chunk, boolean spread) {
-                if(chunk.getBlock(0, 0, 0).getType() != Material.GLASS) return;
-                int x = chunk.getX(), z = chunk.getZ();
-                if(        world.isChunkGenerated(x + 1, z)
-                        && world.isChunkGenerated(x - 1, z)
-                        && world.isChunkGenerated(x + 1, z - 1)
-                        && world.isChunkGenerated(x, z - 1)
-                        && world.isChunkGenerated(x - 1, z - 1)
-                        && world.isChunkGenerated(x + 1, z + 1)
-                        && world.isChunkGenerated(x, z + 1)
-                        && world.isChunkGenerated(x - 1, z + 1) 
-                        && world.isChunkGenerated(x - 2, z)
-                        && world.isChunkGenerated(x - 2, z + 1)
-                        && world.isChunkGenerated(x - 2, z + 2)
-                        && world.isChunkGenerated(x - 2, z - 1)
-                        && world.isChunkGenerated(x - 2, z - 2)
-                        && world.isChunkGenerated(x - 1, z + 2)
-                        && world.isChunkGenerated(x - 1, z - 2)
-                        && world.isChunkGenerated(x, z + 2)
-                        && world.isChunkGenerated(x, z - 2)
-                        && world.isChunkGenerated(x + 1, z + 2)
-                        && world.isChunkGenerated(x + 1, z - 2)
-                        && world.isChunkGenerated(x - 2, z)
-                        && world.isChunkGenerated(x + 2, z + 1)
-                        && world.isChunkGenerated(x + 2, z + 2)
-                        && world.isChunkGenerated(x + 2, z - 1)
-                        && world.isChunkGenerated(x + 2, z - 2)
-                        ) 
-                {
-                    //this keeps on bothering me....
-                    //if(other != null) other.otherPopulate(world, random, chunk);
-                    actuallyPopulate(world, random, chunk);
-                    chunk.getBlock(0, 0, 0).setType(Material.BEDROCK);
-                }
-                if(!spread) return;
-                if(world.isChunkGenerated(x + 1, z)) populateSpread(world, random, world.getChunkAt(x + 1, z), false);
-                if(world.isChunkGenerated(x - 1, z)) populateSpread(world, random, world.getChunkAt(x - 1, z), false);
-                if(world.isChunkGenerated(x + 1, z + 1)) populateSpread(world, random, world.getChunkAt(x + 1, z + 1), false);
-                if(world.isChunkGenerated(x, z + 1)) populateSpread(world, random, world.getChunkAt(x, z + 1), false);
-                if(world.isChunkGenerated(x - 1, z + 1)) populateSpread(world, random, world.getChunkAt(x - 1, z + 1), false);
-                if(world.isChunkGenerated(x + 1, z - 1)) populateSpread(world, random, world.getChunkAt(x + 1, z - 1), false);
-                if(world.isChunkGenerated(x, z - 1)) populateSpread(world, random, world.getChunkAt(x, z - 1), false);
-                if(world.isChunkGenerated(x - 1, z - 1)) populateSpread(world, random, world.getChunkAt(x - 1, z - 1), false);
-                
-                if(world.isChunkGenerated(x - 2, z)) populateSpread(world, random, world.getChunkAt(x - 2, z), false);
-                if(world.isChunkGenerated(x - 2, z + 1)) populateSpread(world, random, world.getChunkAt(x - 2, z + 1), false);
-                if(world.isChunkGenerated(x - 2, z + 2)) populateSpread(world, random, world.getChunkAt(x - 2, z + 2), false);
-                if(world.isChunkGenerated(x - 2, z - 1)) populateSpread(world, random, world.getChunkAt(x - 2, z - 1), false);
-                if(world.isChunkGenerated(x - 2, z - 2)) populateSpread(world, random, world.getChunkAt(x - 2, z - 2), false);
-                if(world.isChunkGenerated(x - 1, z + 2)) populateSpread(world, random, world.getChunkAt(x - 1, z + 2), false);
-                if(world.isChunkGenerated(x - 1, z - 2)) populateSpread(world, random, world.getChunkAt(x - 1, z - 2), false);
-                if(world.isChunkGenerated(x, z + 2)) populateSpread(world, random, world.getChunkAt(x, z + 2), false);
-                if(world.isChunkGenerated(x, z - 2)) populateSpread(world, random, world.getChunkAt(x, z - 2), false);
-                if(world.isChunkGenerated(x + 1, z + 2)) populateSpread(world, random, world.getChunkAt(x + 1, z + 2), false);
-                if(world.isChunkGenerated(x + 1, z - 2)) populateSpread(world, random, world.getChunkAt(x + 1, z - 2), false);
-                
-                if(world.isChunkGenerated(x + 2, z)) populateSpread(world, random, world.getChunkAt(x + 2, z), false);
-                if(world.isChunkGenerated(x + 2, z + 1)) populateSpread(world, random, world.getChunkAt(x + 2, z + 1), false);
-                if(world.isChunkGenerated(x + 2, z + 2)) populateSpread(world, random, world.getChunkAt(x + 2, z + 2), false);
-                if(world.isChunkGenerated(x + 2, z - 1)) populateSpread(world, random, world.getChunkAt(x + 2, z - 1), false);
-                if(world.isChunkGenerated(x + 2, z - 2)) populateSpread(world, random, world.getChunkAt(x + 2, z - 2), false);
-        }
-
-        
-        private void actuallyPopulate(World world, Random random, Chunk chunk) {
-		int rand = random.nextInt(8);
-		if(rand>5)
+		int rand = random.nextInt(15);
+		if(rand<10)
 		{
 			for(int i=5;i<rand;i++)
 			{
                             this.placeTree(world, random, chunk);
-                            
+                            //plugin.addTask(new PlaceSmallTreeTask(world, random, chunk.getX(), chunk.getZ(), rand, this));
 			}
+                        /*DagobahSmallTreePopulator pop = this;
+                        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+                            @Override
+                            public void run() {
+                                for(int i=5;i<rand;i++)
+                                    pop.placeTree(world, random, chunk);
+                            }
+                        }, 1);*/
 		}
 	}
 	
@@ -127,8 +59,8 @@ public class DagobahSmallTreePopulator extends BlockPopulator
 	{
 		//int x = 16*chunk.getX() + 8 + random.nextInt(16);
 		//int z = 16*chunk.getZ() + 8 + random.nextInt(16);
-                int x = 16*chunk.getX() + 3 + random.nextInt(10);
-		int z = 16*chunk.getZ() + 3 + random.nextInt(10);
+                int x = 16*chunk.getX() + random.nextInt(16);
+		int z = 16*chunk.getZ() + random.nextInt(16);
 		
 		Biome biome = world.getBiome(x, z);
 		
@@ -145,11 +77,11 @@ public class DagobahSmallTreePopulator extends BlockPopulator
 			if(type.equals(Material.DIRT) || type.equals(Material.GRASS_BLOCK))
 			{
                             //Bukkit.getLogger().log(Level.INFO, x + " " + z);
-				this.renderTreeAt(world, random, x, block.getY(), z, 0, true);
-                            /*if(random.nextInt()%3 == 0)
+				//this.renderTreeAt(world, random, x, block.getY(), z, 0, true);
+                            if(random.nextInt()%3 == 0)
                                 world.generateTree(block.getLocation(), TreeType.BIG_TREE);
                             else
-                                world.generateTree(block.getLocation(), TreeType.SWAMP);*/
+                                world.generateTree(block.getLocation(), TreeType.SWAMP);
 			}
 			else if(type.equals(Material.WATER)) // Depth 1 water
 			{
@@ -157,8 +89,8 @@ public class DagobahSmallTreePopulator extends BlockPopulator
 				type = block.getType();
 				if(type.equals(Material.DIRT) || type.equals(Material.GRAVEL) || type.equals(Material.SAND) || type.equals(Material.TERRACOTTA))
 				{
-                                        //world.generateTree(block.getLocation(), TreeType.SWAMP);
-					this.renderTreeAt(world, random, x, block.getY(), z, 1, true);
+                                        world.generateTree(block.getLocation(), TreeType.SWAMP);
+					//this.renderTreeAt(world, random, x, block.getY(), z, 1, true);
 				}
 				else if(type.equals(Material.WATER)) // Depth 2 water
 				{
@@ -166,8 +98,8 @@ public class DagobahSmallTreePopulator extends BlockPopulator
 					type = block.getType();
 					if(type.equals(Material.DIRT) || type.equals(Material.GRAVEL) || type.equals(Material.SAND) || type.equals(Material.TERRACOTTA))
 					{
-                                            //world.generateTree(block.getLocation(), TreeType.SWAMP);
-                                            this.renderTreeAt(world, random, x, block.getY(), z, 2, true);
+                                            world.generateTree(block.getLocation(), TreeType.SWAMP);
+						//this.renderTreeAt(world, random, x, block.getY(), z, 2, true);
 					}
 				}
 			}
@@ -303,7 +235,6 @@ public class DagobahSmallTreePopulator extends BlockPopulator
 			}
 
 		}
-		
 		return this.renderBlob(world, tree.toArray(), y);
 	}
 	
@@ -326,8 +257,8 @@ public class DagobahSmallTreePopulator extends BlockPopulator
 		for(int i=0;i<blocks.length;i++)
 		{
 			Block logBlock = blocks[i];
-                        logBlock.setType(Material.OAK_LOG);
 			BlockState state = logBlock.getState();
+			state.setType(Material.OAK_LOG);
 			Tree dirlog = (Tree)state.getData();
 			dirlog.setDirection(faces[i]);
 			dirlog.setSpecies(TreeSpecies.GENERIC);
@@ -519,8 +450,8 @@ public class DagobahSmallTreePopulator extends BlockPopulator
 	
 	private void addLeaf(World world, Random random, HothSet tree, Block block, BlockFace face1, BlockFace face2, int vineProbability, boolean vines)
 	{
-                block.setType(Material.OAK_LEAVES);
 		BlockState state = block.getState();
+		state.setType(Material.OAK_LEAVES);
                 Leaves leavesData = (Leaves) state.getBlockData();
                 leavesData.setPersistent(true);
                 state.setBlockData(leavesData);
