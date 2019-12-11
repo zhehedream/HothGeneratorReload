@@ -108,7 +108,7 @@ public class BlockGravityManager  implements Listener
 			int y = this.block.getY();
 			int z = this.block.getZ();
 
-			this.block.setType(Material.AIR);
+			this.block.setType(Material.AIR, false);
 
 			FallingBlock falling = this.world.spawnFallingBlock(block.getLocation(), this.data);
 			falling.setDropItem(true);

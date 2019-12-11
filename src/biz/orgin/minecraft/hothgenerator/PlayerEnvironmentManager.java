@@ -29,7 +29,33 @@ public class PlayerEnvironmentManager
 {
 	private HothGeneratorPlugin plugin;
 	private int taskId;
-	
+        
+        public static String mosquito_msg1 = null;
+        public static String mosquito_msg2 = null;
+        public static String mosquito_msg3 = null;
+        public static String mosquito_msg4 = null;
+        public static int mosquito_damage = 0;
+        public static int mosquito_rarity = 0;
+        public static int mosquito_runfree = 0;
+        
+        public static String leech_msg1 = null;
+        public static String leech_msg2 = null;
+        public static String leech_msg3 = null;
+        public static String leech_msg4 = null;
+        public static String leech_msg5 = null;
+        public static int leech_damage = 0;
+        public static int leech_rarity = 0;
+
+        public static String freeze_msg = null;
+        public static int freeze_stormdamage = 0;
+        public static int freeze_damage = 0;
+
+	public static String heat_msg1 = null;
+        public static String heat_msg2 = null;
+        public static String heat_msg3 = null;
+        public static String heat_msg4 = null;
+        public static int heat_damage = 0;
+
 	public PlayerEnvironmentManager(HothGeneratorPlugin plugin)
 	{
 		this.plugin = plugin;
@@ -87,9 +113,9 @@ public class PlayerEnvironmentManager
 		public DamagePlayers(HothGeneratorPlugin plugin)
 		{
 			this.plugin = plugin;
-			this.thirsts = new HashMap<UUID, Integer>();
-			this.mosquitos = new HashMap<UUID, PlayerData>();
-			this.leeches = new HashMap<UUID, PlayerData>();
+			this.thirsts = new HashMap<>();
+			this.mosquitos = new HashMap<>();
+			this.leeches = new HashMap<>();
 			
 			this.random = new Random(System.currentTimeMillis());
 		}
@@ -131,12 +157,30 @@ public class PlayerEnvironmentManager
 		/**
 		 * Finds all players on the specified world and applies mosquito damage.
 		 * @param world
-		 */
+		 */                
 		private void mosquito(World world)
 		{
 			
 			List<Player> players = world.getPlayers();
 			Iterator<Player> iterator = players.iterator();
+                                if(PlayerEnvironmentManager.mosquito_msg1 == null) {
+                                    PlayerEnvironmentManager.mosquito_msg1 = ConfigManager.getRulesMosquitoMessage1(this.plugin, null);
+                                    PlayerEnvironmentManager.mosquito_msg2 = ConfigManager.getRulesMosquitoMessage2(this.plugin, null);
+                                    PlayerEnvironmentManager.mosquito_msg3 = ConfigManager.getRulesMosquitoMessage3(this.plugin, null);
+                                    PlayerEnvironmentManager.mosquito_msg4 = ConfigManager.getRulesMosquitoMessage4(this.plugin, null);
+                                    PlayerEnvironmentManager.mosquito_damage = ConfigManager.getRulesMosquitoDamage(this.plugin, null);
+                                    PlayerEnvironmentManager.mosquito_rarity = ConfigManager.getRulesMosquitoRarity(this.plugin, null);
+                                    PlayerEnvironmentManager.mosquito_runfree = ConfigManager.getRulesMosquitoRunFree(this.plugin, null);
+                                }
+                                String message1 = PlayerEnvironmentManager.mosquito_msg1;
+				String message2 = PlayerEnvironmentManager.mosquito_msg2;
+				String message3 = PlayerEnvironmentManager.mosquito_msg3;
+				String message4 = PlayerEnvironmentManager.mosquito_msg4;
+                                int damage = PlayerEnvironmentManager.mosquito_damage;
+                                int rarity = mosquito_rarity;
+				int runfree = mosquito_runfree;
+
+
 			
 			while(iterator.hasNext())
 			{
@@ -160,16 +204,9 @@ public class PlayerEnvironmentManager
 				if(!gm.equals(GameMode.CREATIVE) && !gm.equals(GameMode.SPECTATOR) && PermissionManager.hasMosquitoPermission(player) && !this.hasRepellentSuit(player))
 				{
 					Location location = player.getLocation();
-					int damage = ConfigManager.getRulesMosquitoDamage(this.plugin, location);
 					
 					if(damage>0)
 					{
-						String message1 = ConfigManager.getRulesMosquitoMessage1(this.plugin, location);
-						String message2 = ConfigManager.getRulesMosquitoMessage2(this.plugin, location);
-						String message3 = ConfigManager.getRulesMosquitoMessage3(this.plugin, location);
-						String message4 = ConfigManager.getRulesMosquitoMessage4(this.plugin, location);
-						int rarity = ConfigManager.getRulesMosquitoRarity(this.plugin, location);
-						int runfree = ConfigManager.getRulesMosquitoRunFree(this.plugin, location);
 	
 						Block block = world.getBlockAt(location.getBlockX(), location.getBlockY()+1, location.getBlockZ());
 						Block block2 = world.getBlockAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
@@ -298,22 +335,32 @@ public class PlayerEnvironmentManager
 					leech = new PlayerData(player.getLocation());
 					this.leeches.put(uuid, leech);
 				}
-				
+                                
+                                if(PlayerEnvironmentManager.leech_msg1 == null) {
+                                    PlayerEnvironmentManager.leech_msg1 = ConfigManager.getRulesLeechMessage1(this.plugin, null);
+                                    PlayerEnvironmentManager.leech_msg2 = ConfigManager.getRulesLeechMessage2(this.plugin, null);
+                                    PlayerEnvironmentManager.leech_msg3 = ConfigManager.getRulesLeechMessage3(this.plugin, null);
+                                    PlayerEnvironmentManager.leech_msg4 = ConfigManager.getRulesLeechMessage4(this.plugin, null);
+                                    PlayerEnvironmentManager.leech_msg5 = ConfigManager.getRulesLeechMessage5(this.plugin, null);
+                                    PlayerEnvironmentManager.leech_rarity = ConfigManager.getRulesMosquitoRarity(this.plugin, null);
+                                    PlayerEnvironmentManager.leech_damage = ConfigManager.getRulesLeechDamage(this.plugin, null);
+                                }
+                                int damage = PlayerEnvironmentManager.leech_damage;
+                                String message1 = PlayerEnvironmentManager.leech_msg1;
+                                String message2 = PlayerEnvironmentManager.leech_msg2;
+                                String message3 = PlayerEnvironmentManager.leech_msg3;
+                                String message4 = PlayerEnvironmentManager.leech_msg4;
+                                String message5 = PlayerEnvironmentManager.leech_msg5;
+				int rarity = PlayerEnvironmentManager.leech_rarity;
+                                
 				GameMode gm = player.getGameMode();
 				if(!gm.equals(GameMode.CREATIVE) && !gm.equals(GameMode.SPECTATOR) && PermissionManager.hasLeechPermission(player) && !this.hasRepellentSuit(player))
 				{
 					Location location = player.getLocation();
-					int damage = ConfigManager.getRulesLeechDamage(this.plugin, location);
+					
 					
 					if(damage>0)
 					{
-						String message1 = ConfigManager.getRulesLeechMessage1(this.plugin, location);
-						String message2 = ConfigManager.getRulesLeechMessage2(this.plugin, location);
-						String message3 = ConfigManager.getRulesLeechMessage3(this.plugin, location);
-						String message4 = ConfigManager.getRulesLeechMessage4(this.plugin, location);
-						String message5 = ConfigManager.getRulesLeechMessage5(this.plugin, location);
-						int rarity = ConfigManager.getRulesMosquitoRarity(this.plugin, location);
-	
 						Block block = world.getBlockAt(location.getBlockX(), location.getBlockY()+1, location.getBlockZ());
 						Block block2 = world.getBlockAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
 						
@@ -441,6 +488,20 @@ public class PlayerEnvironmentManager
 			
 			List<Player> players = world.getPlayers();
 			Iterator<Player> iterator = players.iterator();
+                        
+                        if(PlayerEnvironmentManager.heat_msg1 == null) {
+                            PlayerEnvironmentManager.heat_msg1 = ConfigManager.getRulesHeatMessage1(this.plugin, null);
+                            PlayerEnvironmentManager.heat_msg2 = ConfigManager.getRulesHeatMessage2(this.plugin, null);
+                            PlayerEnvironmentManager.heat_msg3 = ConfigManager.getRulesHeatMessage3(this.plugin, null);
+                            PlayerEnvironmentManager.heat_msg4 = ConfigManager.getRulesHeatMessage4(this.plugin, null);
+                            PlayerEnvironmentManager.heat_damage = ConfigManager.getRulesHeatDamage(this.plugin, null);
+                        }
+                        
+                        int damage = PlayerEnvironmentManager.heat_damage;
+                        String message1 = PlayerEnvironmentManager.heat_msg1;
+                        String message2 = PlayerEnvironmentManager.heat_msg2;
+                        String message3 = PlayerEnvironmentManager.heat_msg3;
+                        String message4 = PlayerEnvironmentManager.heat_msg4;
 			
 			while(iterator.hasNext())
 			{
@@ -458,15 +519,9 @@ public class PlayerEnvironmentManager
 				if(!gm.equals(GameMode.CREATIVE) && PermissionManager.hasHeatPermission(player) && !this.hasCoolingSuit(player))
 				{
 					Location location = player.getLocation();
-					int damage = ConfigManager.getRulesHeatDamage(this.plugin, location);
 					
 					if(damage>0)
-					{
-						String message1 = ConfigManager.getRulesHeatMessage1(this.plugin, location);
-						String message2 = ConfigManager.getRulesHeatMessage2(this.plugin, location);
-						String message3 = ConfigManager.getRulesHeatMessage3(this.plugin, location);
-						String message4 = ConfigManager.getRulesHeatMessage4(this.plugin, location);
-						
+					{						
 						Block block = world.getBlockAt(location.getBlockX(), location.getBlockY()+1, location.getBlockZ());
 						Block block2 = world.getBlockAt(location.getBlockX(), location.getBlockY(), location.getBlockZ());
 						
@@ -544,6 +599,16 @@ public class PlayerEnvironmentManager
 
 			List<Player> players = world.getPlayers();
 			Iterator<Player> iterator = players.iterator();
+                        
+                        if(PlayerEnvironmentManager.freeze_msg == null) {
+                            PlayerEnvironmentManager.freeze_damage = ConfigManager.getRulesFreezeDamage(this.plugin, null);
+			    PlayerEnvironmentManager.freeze_stormdamage = ConfigManager.getRulesFreezeStormdamage(this.plugin, null);
+			    PlayerEnvironmentManager.freeze_msg = ConfigManager.getRulesFreezeMessage(this.plugin, null);
+                        }
+                        
+                        String message = PlayerEnvironmentManager.freeze_msg;
+                        int damage = PlayerEnvironmentManager.freeze_damage;
+                        int stormdamage = PlayerEnvironmentManager.freeze_stormdamage;
 			
 			while(iterator.hasNext())
 			{
@@ -553,9 +618,6 @@ public class PlayerEnvironmentManager
 				if(!gm.equals(GameMode.CREATIVE) && !gm.equals(GameMode.SPECTATOR) && PermissionManager.hasFreezePermission(player) && !this.hasWarmSuit(player))
 				{
 					Location location = player.getLocation();
-					int damage = ConfigManager.getRulesFreezeDamage(this.plugin, location);
-					int stormdamage = ConfigManager.getRulesFreezeStormdamage(this.plugin, location);
-					String message = ConfigManager.getRulesFreezeMessage(this.plugin, location);
 					
 					Block block = world.getBlockAt(location.getBlockX(), location.getBlockY()+1, location.getBlockZ());
 					

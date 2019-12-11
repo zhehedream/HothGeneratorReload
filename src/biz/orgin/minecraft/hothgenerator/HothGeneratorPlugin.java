@@ -80,11 +80,13 @@ public class HothGeneratorPlugin extends JavaPlugin
 		return this.id;
 	}
 	
+    @Override
     public void onEnable()
     { 
     	HothGenerator.setPlugin(this);
         this.mih = new MagicIdHandler();
         mih.init(this);
+        HothUtils.splugin = this;
     	
     	this.blockPlaceManager = new BlockPlaceManager(this);
     	this.blockBreakManager = new BlockBreakManager(this);
@@ -214,18 +216,18 @@ public class HothGeneratorPlugin extends JavaPlugin
     	this.taskManager.addTask(task, prioritized);
     }
     
+        @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)
     {
     	// Log all actions
-    	StringBuffer full = new StringBuffer();
-    	for(int i=0;i<args.length;i++)
-    	{
-    		if(full.length()>0)
-    		{
-        		full.append(" ");
-    		}
-    		full.append(args[i]);
-    	}
+    	StringBuilder full = new StringBuilder();
+            for (String arg : args) {
+                if(full.length()>0)
+                {
+                    full.append(" ");
+                }
+                full.append(arg);
+            }
     	this.getLogger().info("[PLAYER COMMAND] " + sender.getName() + ": /" + cmd.getName() + " " + full.toString());
 
     	

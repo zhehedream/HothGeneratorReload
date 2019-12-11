@@ -345,7 +345,7 @@ public class VolcanoManager
 						Block block = world.getBlockAt(x,y,z);
 						if(block.getType().equals(Material.LAVA))
 						{
-							block.setType(Material.AIR);
+							block.setType(Material.AIR, false);
 						}
 					}
 				}

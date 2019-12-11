@@ -160,8 +160,8 @@ public class BaseGenerator {
 					}
 					else
 					{
-						Block door = world.getBlockAt(px+3, py-2, pz); door.setType(Material.COBBLESTONE);
-						door = world.getBlockAt(px+3, py-3, pz); door.setType(Material.COBBLESTONE);
+						Block door = world.getBlockAt(px+3, py-2, pz); door.setType(Material.COBBLESTONE, false);
+						door = world.getBlockAt(px+3, py-3, pz); door.setType(Material.COBBLESTONE, false);
 					}
 					if((rooms&0x2)!=0) // South
 					{
@@ -170,8 +170,8 @@ public class BaseGenerator {
 					}
 					else
 					{
-						Block door = world.getBlockAt(px+3, py-2, pz+6); door.setType(Material.COBBLESTONE);
-						door = world.getBlockAt(px+3, py-3, pz+6); door.setType(Material.COBBLESTONE);
+						Block door = world.getBlockAt(px+3, py-2, pz+6); door.setType(Material.COBBLESTONE, false);
+						door = world.getBlockAt(px+3, py-3, pz+6); door.setType(Material.COBBLESTONE, false);
 					}
 					if((rooms&0x4)!=0) // West
 					{
@@ -180,8 +180,8 @@ public class BaseGenerator {
 					}
 					else
 					{
-						Block door = world.getBlockAt(px, py-2, pz+3); door.setType(Material.COBBLESTONE);
-						door = world.getBlockAt(px, py-3, pz+3); door.setType(Material.COBBLESTONE);
+						Block door = world.getBlockAt(px, py-2, pz+3); door.setType(Material.COBBLESTONE, false);
+						door = world.getBlockAt(px, py-3, pz+3); door.setType(Material.COBBLESTONE, false);
 					}
 					if((rooms&0x8)!=0) // East
 					{
@@ -190,8 +190,8 @@ public class BaseGenerator {
 					}
 					else
 					{
-						Block door = world.getBlockAt(px+6, py-2, pz+3); door.setType(Material.COBBLESTONE);
-						door = world.getBlockAt(px+6, py-3, pz+3); door.setType(Material.COBBLESTONE);
+						Block door = world.getBlockAt(px+6, py-2, pz+3); door.setType(Material.COBBLESTONE, false);
+						door = world.getBlockAt(px+6, py-3, pz+3); door.setType(Material.COBBLESTONE, false);
 					}
 				}
 				

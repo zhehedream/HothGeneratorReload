@@ -95,7 +95,7 @@ public class BlockBreakManager implements Listener
 				{
 					if(ConfigManager.isRulesDropice(this.plugin, block.getLocation()))
 					{
-						block.setType(Material.AIR);
+						block.setType(Material.AIR, false);
 						ItemStack iceStack = new ItemStack(Material.ICE);
 						iceStack.setAmount(1);
 						block.getWorld().dropItemNaturally(block.getLocation(), iceStack);
@@ -106,7 +106,7 @@ public class BlockBreakManager implements Listener
 				{
 					if(ConfigManager.isRulesDropsnow(this.plugin, block.getLocation()))
 					{
-						block.setType(Material.AIR);
+						block.setType(Material.AIR, false);
 						ItemStack snowStack = new ItemStack(Material.SNOW_BLOCK);
 						snowStack.setAmount(1);
 						block.getWorld().dropItemNaturally(block.getLocation(), snowStack);
@@ -117,7 +117,7 @@ public class BlockBreakManager implements Listener
 				{
 					if(ConfigManager.isRulesDroppackedice(this.plugin, block.getLocation()))
 					{
-						block.setType(Material.AIR);
+						block.setType(Material.AIR, false);
 						ItemStack iceStack = new ItemStack(Material.PACKED_ICE);
 						iceStack.setAmount(1);
 						block.getWorld().dropItemNaturally(block.getLocation(), iceStack);
@@ -128,7 +128,7 @@ public class BlockBreakManager implements Listener
 				{
 					if(ConfigManager.isRulesLessStone(this.plugin, block.getLocation()))
 					{
-						block.setType(Material.AIR);
+						block.setType(Material.AIR, false);
 						if(this.random.nextInt(8) == 1)
 						{
 							Material material = Material.STONE;

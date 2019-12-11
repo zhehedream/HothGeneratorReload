@@ -5,7 +5,6 @@
  */
 package me.zhehe;
 
-import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.IOException;

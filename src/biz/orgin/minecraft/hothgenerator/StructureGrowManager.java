@@ -322,7 +322,7 @@ public class StructureGrowManager implements Listener
 					block = world.getBlockAt(this.x, this.y, this.z);
 					if(isSapling(block.getType()))
 					{
-						block.setType(Material.AIR);
+						block.setType(Material.AIR, false);
 					}
 				}
 			}

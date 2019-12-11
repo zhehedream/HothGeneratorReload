@@ -91,7 +91,11 @@ public class ConfigManager
                 new FlagValue("recipe.glass.suit.name", new String[]{"[text]", "[blank]"}, String.class),
                 new FlagValue("recipe.glass.suit.description", new String[]{"[text]", "[blank]"}, String.class),
                 new FlagValue("rules.spawn.mustafar", new String[]{"allow","deny", "[blank]"}, Boolean.class),
+                new FlagValue("rules.spawn.schematic_entity", new String[]{"allow","deny", "[blank]"}, Boolean.class),
 		};
+        public static boolean getSchematicEntity(HothGeneratorPlugin plugin, World world) {
+            return ConfigManager.getConfigBoolean(plugin, world, "rules.spawn.schematic_entity", true);
+        }
         public static boolean getMustafarSpawn(HothGeneratorPlugin plugin, World world) {
             return ConfigManager.getConfigBoolean(plugin, world, "rules.spawn.mustafar", false);
         }

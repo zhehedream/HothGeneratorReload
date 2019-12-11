@@ -16,7 +16,6 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
 import org.bukkit.block.CreatureSpawner;
 import org.bukkit.entity.EntityType;
@@ -25,9 +24,7 @@ import org.bukkit.plugin.Plugin;
 
 import biz.orgin.minecraft.hothgenerator.schematic.RotatedSchematic;
 import biz.orgin.minecraft.hothgenerator.schematic.Schematic;
-import java.util.logging.Level;
 import me.zhehe.MagicIdHandler;
-import org.bukkit.Bukkit;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.generator.ChunkGenerator.ChunkData;
 
@@ -38,6 +35,7 @@ import org.bukkit.generator.ChunkGenerator.ChunkData;
  */
 public class HothUtils
 {
+    public static HothGeneratorPlugin splugin;
 	
 	private static IntSet delays = new IntSet(new int[] {  // Block types to defer until infrastructure is made.
 			50,75,76,6,32,37,38,39,40,51,55,26,
@@ -171,10 +169,10 @@ public class HothUtils
 							}
 						}
 					}
-					else if(type==-2) // Spawn entity
+					else if(type==-2 && ConfigManager.getSchematicEntity(splugin, world)) // Spawn entity
 					{
 						Block block = world.getBlockAt(x+xx, y-yy, z+zz);
-						block.setType(Material.AIR);
+						block.setType(Material.AIR, false);
 						byte data = (byte)matrix[yy][zz][xx+width];
 						
 						EntityType entityType = EntityTypeManager.toEntityType(data);

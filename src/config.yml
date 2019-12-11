@@ -350,3 +350,6 @@ hoth:
 #
 # rules.spawn.mustafar - true/false. If false, will prevent the normal monsters spawn in Mustafar world. Only FireBeetle will spawn
   rules.spawn.mustafar: false
+#
+# rules.spawn.schematic_entity -true/false. If true, will spawn entity (live villagers) in structures
+  rules.spawn.schematic_entity: true
